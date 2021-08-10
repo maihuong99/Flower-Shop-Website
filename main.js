@@ -1,6 +1,11 @@
 var links = document.querySelectorAll('header .navbar a');
-var links = document.querySelectorAll('header .navbar a');
 var section = document.querySelectorAll('section');
+var menu = document.querySelector("#menu");
+
+menu.onclick = () =>{
+    document.querySelector("#menu").classList.toggle("fa-times");
+    document.querySelector("header .navbar").classList.toggle("active");
+}
 
 links.forEach(function(link) {
     link.onclick = ()=>{
@@ -46,6 +51,9 @@ var swiper = new Swiper(".review-slider", {
 
 
 window.onscroll = () =>{
+
+    menu.classList.remove('fa-times');
+    document.querySelector("header .navbar").classList.remove("active");
 
     section.forEach(sec =>{
         let top = window.scrollY;

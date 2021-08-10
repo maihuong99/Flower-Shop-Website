@@ -1,4 +1,6 @@
 var links = document.querySelectorAll('header .navbar a');
+var links = document.querySelectorAll('header .navbar a');
+var section = document.querySelectorAll('section');
 
 links.forEach(function(link) {
     link.onclick = ()=>{
@@ -12,3 +14,54 @@ links.forEach(function(link) {
     }
     
 })
+
+
+var swiper = new Swiper(".review-slider", {
+    spaceBetween: 10,
+    centeredSlider: true,
+    autoplay: {
+        delay: 7500,
+        disableOnInteraction:false
+    },
+    loop: true,
+    breakpoints:{
+        0: {
+            slidesPerView: 1,
+        },
+
+        550: {
+            slidesPerView: 2,
+        },
+
+        768: {
+            slidesPerView: 3,
+        },
+
+        1024: {
+            slidesPerView: 3,
+        },
+
+    }
+  });
+
+
+window.onscroll = () =>{
+
+    section.forEach(sec =>{
+        let top = window.scrollY;
+        let height = sec.offsetHeight;
+        let offset = sec.offsetTop -150;
+        let id= sec.getAttribute('id');
+     
+        if(top >= offset && top < offset + height){
+          
+            links.forEach(link =>{
+                
+                link.classList.remove('active');
+            })
+            document.querySelector('header .navbar a[href*='+id+']').classList.add('active');
+
+
+        }
+    })
+}
